@@ -7,11 +7,12 @@ import javax.persistence.Id;
 
 @Entity
 public class UnitOfMeasure {
+//BE CAREFULL IN THE DATA.SQL used by spring to set data in the initialize of the db, put unity_of_measure
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-    private String uom;
+    private String description;
 
     public Long getId() {
         return Id;
@@ -21,11 +22,11 @@ public class UnitOfMeasure {
         Id = id;
     }
 
-    public String getUom() {
-        return uom;
+    public String getDescription() {
+        return description;
     }
 
-    public void setUom(String uom) {
-        this.uom = uom;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -9,6 +9,7 @@ public class Notes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     // the owner is the Recipe class! So if we want to delete a recipe we will delete the Notes but not viceversa :)
+    //ONE TO ONE abbiamo in entrambe le tabelle una foreign key, in questo aso per Recipe e nella classe recipe per NOte_id
     @OneToOne
     private Recipe recipe;
 

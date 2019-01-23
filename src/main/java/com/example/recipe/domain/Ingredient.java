@@ -15,6 +15,7 @@ public class Ingredient {
     //in this case each ingrediente is inside a Recipe that s it!
     //in the single class of ingrediente you are saying many ingrediente to one recipe and yu are puttin in this variable
     //the connenction between each ignediente and the recipe to it is refering
+    // Many to one completa la relzioni dall latro lato e si tiene la foreign key di una recipe
     @ManyToOne
     private Recipe recipe;
     // this is not bi-derictional because an Ingredient need a unit of measure but not the opposite
@@ -24,8 +25,22 @@ public class Ingredient {
     // the default, if you want Lazy it will call from JPA through Hibernate only when the method getUnitOfMEAASURE WILL BE called
     // this is good when you have for instance a listof students inside a University entity , it is better to call only when you need
     //really to access to them, but in this case is a bit irrelevant
+    // tu vuoi gli ingrediente allora ci sara anche qui una colonna esterna per l unita di misura id
     @OneToOne(fetch = FetchType.EAGER)
     private UnitOfMeasure unitOfMeasure;
+
+    public Ingredient(String description, BigDecimal amount, UnitOfMeasure unitOfMeasure) {
+        this.description = description;
+        this.amount = amount;
+        this.unitOfMeasure = unitOfMeasure;
+    }
+
+    public Ingredient(String description, BigDecimal amount, UnitOfMeasure unitOfMeasure, Recipe recipe) {
+        this.description = description;
+        this.amount = amount;
+        this.recipe = recipe;
+        this.unitOfMeasure = unitOfMeasure;
+    }
 
     public Long getId() {
         return id;
@@ -56,6 +71,7 @@ public class Ingredient {
     }
 
     public void setRecipe(Recipe recipe) {
+        recipe.addIngredient(this);
         this.recipe = recipe;
     }
 
