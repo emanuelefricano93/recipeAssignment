@@ -4,6 +4,7 @@ import com.example.recipe.domain.*;
 import com.example.recipe.repositories.CategoryRepository;
 import com.example.recipe.repositories.RecipeRepository;
 import com.example.recipe.repositories.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 /*Componente eseguito al bootrsap dell app nel metodo run! */
+@Slf4j
 @Component
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -29,6 +31,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
+        log.debug("On application event " + ContextRefreshedEvent.class.getSimpleName());
         recipeRepository.saveAll(getRecipes());
     }
 

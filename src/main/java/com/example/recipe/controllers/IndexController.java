@@ -4,12 +4,14 @@ import com.example.recipe.domain.Recipe;
 import com.example.recipe.repositories.CategoryRepository;
 import com.example.recipe.repositories.UnitOfMeasureRepository;
 import com.example.recipe.services.RecipeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.HashSet;
 
+@Slf4j
 @Controller
 public class IndexController {
 
@@ -18,6 +20,7 @@ public class IndexController {
     private RecipeService recipeService;
 
     public IndexController(CategoryRepository categoryRepository, UnitOfMeasureRepository unitOfMeasureRepository, RecipeService recipeService) {
+        log.debug("Index controller constructor");
         this.categoryRepository = categoryRepository;
         this.unitOfMeasureRepository = unitOfMeasureRepository;
         this.recipeService = recipeService;
