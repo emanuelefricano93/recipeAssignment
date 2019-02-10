@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/openjdk:8-jdk
+      - image: circleci/bash@sha256:9f0a4aa3c9931bd5fdda51b1b2b74a0398a8eabeaf9519d807e010b9d9d41993
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -28,7 +28,7 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "pom.xml" }}
             # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+            - v1-dependencies-maven-surefire-plugin
 
       - run: mvn dependency:go-offline
 
