@@ -21,12 +21,10 @@ public class RecipeServiceImpl implements  RecipeService{
     @Override
     public Set<Recipe> getRecipies() {
         log.debug("I'm in the recipe service impl");
-
         HashSet<Recipe> recipeSet = new HashSet<>();
         //quindi questo significa che seleziona l iterable e poi per ogni elemento passalo a quella funzione add di recipe.set
         // è come dire recipe -> recipeSet.add(recipe) just to be shorter :) JAVA 8 syntax
         this.recipeRepository.findAll().iterator().forEachRemaining(recipeSet::add);
-
         return recipeSet;
     }
 }
